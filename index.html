@@ -6,8 +6,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <!-- 外部CSSファイルを読み込み -->
+    <?!= include("spinner.css") ?> 
 </head>
 <body>
+
+        <!-- スピナーのオーバーレイ -->
+    <div class="spinner-overlay" id="spinnerOverlay">
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+    </div>
 <!--     <p id="lineId">LINE ID取得中...</p> -->
     <form id="orderForm" class="mb-4">
         <div class="mb-3">
@@ -154,6 +164,12 @@
                 console.log(error);
             });
         }
+        
+        // フォーム送信時にスピナーを表示し、遷移を待つ
+        function showSpinner() {
+            document.getElementById("spinnerOverlay").style.display = "flex";
+        }
+
     </script>
 </body>
 </html>
