@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 </head>
 <body>
-    <p id="lineId">LINE ID取得中...</p>
+<!--     <p id="lineId">LINE ID取得中...</p> -->
     <form id="orderForm" class="mb-4">
         <div class="mb-3">
             <label class="form-label">名前</label>
@@ -113,8 +113,8 @@
                 liff.getProfile()
                     .then(profile => {
                         lineId = profile.userId;
-                        alert("あなたのLINE IDは: " + lineId);
-                        $('#lineId').text("あなたのLINE IDは: " + lineId);
+                        // alert("あなたのLINE IDは: " + lineId);
+                        // $('#lineId').text("あなたのLINE IDは: " + lineId);
 
                     })
                     .catch((err) => {
