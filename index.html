@@ -139,6 +139,9 @@
             let submitButton = document.querySelector("#orderForm button[type='submit']");
             submitButton.disabled = true;
 
+            // ここでスピナーを表示する
+            showSpinner();
+
             let formData = {
                 lineId: lineId,
                 name: $("input[name='name']").val(),
