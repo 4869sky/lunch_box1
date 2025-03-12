@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     </head>
-    <body>
-<!--     <body style="display: none;"> -->
+<!--     <body> -->
+    <body style="display: none;">
 <!--         <p id="lineId">LINE ID取得中...</p> -->
         <form id="orderForm"　method="post" class="mb-4">
             <div class="mb-3">
@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">電話番号(当日連絡させていただく可能性があります)</label>
-                <input type="tel" name="phone" pattern="[0-9]+" required class="form-control" placeholder="例: 090-1234-5678">
+                <input type="tel" name="phone" pattern="[0-9-]+" required class="form-control" placeholder="例: 090-1234-5678">
             </div>
             <div class="mb-3">
                 <label class="form-label">購入商品①（必須）</label>
@@ -113,7 +113,7 @@
                             //alert("あなたのLINE IDは: " + profile.userId);
                             //$('#lineId').text("あなたのLINE IDは: " + profile.userId);
                             globalLineId = profile.userId; // 取得してグローバル変数に格納
-                            //document.body.style.display = "block"; // ここでページを表示
+                            document.body.style.display = "block"; // ここでページを表示
 
                         })
                         .catch((err) => {
