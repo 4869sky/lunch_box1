@@ -9,7 +9,7 @@
 </head>
 <body style="display: none;">
     <p id="lineId">LINE ID取得中...</p>
-    <form method="post" class="mb-4">
+    <form id="orderForm"　method="post" class="mb-4">
         <div class="mb-3">
             <label class="form-label">名前</label>
             <input type="text" name="name" required class="form-control" placeholder="例: 山田 太郎">
@@ -84,6 +84,7 @@
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     
     <script>
+        let globalLineId = ""; // ここで宣言
         $(document).ready(function () {
             const liffId = "2007054863-m45ZelkY";
             initializeLiff(liffId);
@@ -95,6 +96,7 @@
             }).then(() => {
               if (!liff.isLoggedIn()) {
                   liff.login();
+                  return;
               } else {
                   initializeApp();
               }
@@ -109,6 +111,7 @@
                     .then(profile => {
                         //alert("あなたのLINE IDは: " + profile.userId);
                         $('#lineId').text("あなたのLINE IDは: " + profile.userId);
+                        globalLineId = profile.userId; // 取得してグローバル変数に格納
                         document.body.style.display = "block"; // ここでページを表示
 
                     })
@@ -119,6 +122,39 @@
                 liff.login();
             }
         }
+
+        // 送信先URLを指定
+        const BASE_URL = "https://script.google.com/macros/s/AKfycbwFXORbTiUOSlNYxHaCN3fLAgAnn_ru9xjpbjPwDQzI8330TUULJBN6LeuG3gGSHCVE/exec";
+    
+        $(document).ready(function() {
+            // フォーム送信時のイベントをフック
+            $("#orderForm").on("submit", function(e) {
+                e.preventDefault(); // 通常のフォーム送信をキャンセル
+    
+                // フォーム入力値を取得
+                const name        = $('input[name="name"]').val();
+                const name_kana   = $('input[name="name_kana"]').val();
+                const phone       = $('input[name="phone"]').val();
+                const shop1       = $('select[name="shop1"]').val();
+                const shop2       = $('select[name="shop2"]').val();
+                const shop3       = $('select[name="shop3"]').val();
+                const shop4       = $('select[name="shop4"]').val();
+    
+                // クエリパラメータの組み立て
+                // encodeURIComponent(...) でURLに使えない文字をエスケープ
+                let query = "?lineId=" + encodeURIComponent(globalLineId)
+                          + "&name="       + encodeURIComponent(name)
+                          + "&name_kana="  + encodeURIComponent(name_kana)
+                          + "&phone="      + encodeURIComponent(phone)
+                          + "&shop1="      + encodeURIComponent(shop1)
+                          + "&shop2="      + encodeURIComponent(shop2)
+                          + "&shop3="      + encodeURIComponent(shop3)
+                          + "&shop4="      + encodeURIComponent(shop4);
+    
+                // URL へ飛ばす
+                window.location.href = BASE_URL + query;
+            });
+        });
     </script>
 </body>
 </html>
