@@ -1,174 +1,159 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>出張！大学周辺ランチボックスフェア</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    </head>
-<!--     <body> -->
-    <body style="display: none;">
-<!--         <p id="lineId">LINE ID取得中...</p> -->
-        <form id="orderForm" method="post" class="mb-4">
-            <div class="mb-3">
-                <label class="form-label">名前</label>
-                <input type="text" name="name" required class="form-control" placeholder="例: 山田 太郎">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">おなまえ (ふりがな)</label>
-                <input type="text" name="name_kana" required class="form-control" placeholder="例: やまだ たろう">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">電話番号(当日連絡させていただく可能性があります)</label>
-                <input type="tel" name="phone" pattern="[0-9-]+" required class="form-control" placeholder="例: 090-1234-5678">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">購入商品①（必須）</label>
-                <select name="shop1" required class="form-select">
-                    <option value="">選択してください</option>
-                    <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
-                    <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
-                    <option value="カフェしえる">角煮丼(カフェしえる)</option>
-                    <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
-                    <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">購入商品②（任意）</label>
-                <select name="shop2" class="form-select">
-                    <option value="">選択しない</option>
-                    <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
-                    <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
-                    <option value="カフェしえる">角煮丼(カフェしえる)</option>
-                    <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
-                    <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">購入商品③（任意）</label>
-                <select name="shop3" class="form-select">
-                    <option value="">選択しない</option>
-                    <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
-                    <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
-                    <option value="カフェしえる">角煮丼(カフェしえる)</option>
-                    <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
-                    <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">購入商品④（任意）</label>
-                <select name="shop4" class="form-select">
-                    <option value="">選択しない</option>
-                    <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
-                    <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
-                    <option value="カフェしえる">角煮丼(カフェしえる)</option>
-                    <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
-                    <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
-                    <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">注文を確定する</button>
-        </form>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>１出張！大学周辺ランチボックスフェア</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+</head>
+<body>
+    <p id="lineId">LINE ID取得中...</p>
+    <form id="orderForm" class="mb-4">
+        <div class="mb-3">
+            <label class="form-label">名前</label>
+            <input type="text" name="name" required class="form-control" placeholder="例: 山田 太郎">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">おなまえ (ふりがな)</label>
+            <input type="text" name="furigana" required class="form-control" placeholder="例: やまだ たろう">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">電話番号(ハイフンは入力しないでください)</label>
+            <input type="tel" name="phone" pattern="[0-9]+" required class="form-control" placeholder="例: 09012345678">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">購入商品①（必須）</label>
+            <select name="shop1" required class="form-select">
+                <option value="">選択してください</option>
+                <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
+                <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
+                <option value="カフェしえる">角煮丼(カフェしえる)</option>
+                <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
+                <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">購入商品②（任意）</label>
+            <select name="shop2" class="form-select">
+                <option value="">選択しない</option>
+                <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
+                <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
+                <option value="カフェしえる">角煮丼(カフェしえる)</option>
+                <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
+                <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">購入商品③（任意）</label>
+            <select name="shop3" class="form-select">
+                <option value="">選択しない</option>
+                <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
+                <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
+                <option value="カフェしえる">角煮丼(カフェしえる)</option>
+                <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
+                <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">購入商品④（任意）</label>
+            <select name="shop4" class="form-select">
+                <option value="">選択しない</option>
+                <option value="食堂かわひがし">炭火焼き味噌豚&からあげ弁当(食堂かわひがし)</option>
+                <option value="県大生協">豚塩カルビと唐揚げ丼(富山県立大学生協)</option>
+                <option value="カフェしえる">角煮丼(カフェしえる)</option>
+                <option value="とべーぐる">べーぐる&季節のケーキ(とべーぐる)</option>
+                <option value="おむすびぐぐ屋（さけ、高菜）">おむすび[さけ&高菜]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="おむすびぐぐ屋（黒とろろ、焼たらこ）">おむすび[くろとろろ&焼たらこ]&唐揚げ(おむすびぐぐ屋)</option>
+                <option value="一条珈琲">クロワッサン&塩パン&アップルパイ(一条珈琲)</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">注文を確定する</button>
+    </form>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    
+    <script>
+        let lineId = "";
         
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-        
-        <script>
-            let globalLineId = ""; // ここで宣言
-            $(document).ready(function () {
-                const liffId = "2007054863-m45ZelkY";
-                initializeLiff(liffId);
+        $(document).ready(function () {
+            const liffId = "2007054863-m45ZelkY";
+            initializeLiff(liffId);
+
+
+            //
+            $("#orderForm").submit(function (event) {
+                event.preventDefault();
+                sendData();
             });
+        });
 
-            function initializeLiff(liffId) {
-                liff.init({
-                    liffId: liffId
-                }).then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                    return;
-                } else {
-                    initializeApp();
-                }
-                }).catch((err) => {
-                    console.log('LIFF Initialization failed ', err);
-                });
-            }
+        function initializeLiff(liffId) {
+            liff.init({
+                liffId: liffId
+            }).then(() => {
+                initializeApp();
+            }).catch((err) => {
+                console.log('LIFF Initialization failed ', err);
+            });
+        }
 
-            function initializeApp() {
-                if (liff.isLoggedIn()) {
-                    liff.getProfile()
-                        .then(profile => {
-                            //alert("あなたのLINE IDは: " + profile.userId);
-                            //$('#lineId').text("あなたのLINE IDは: " + profile.userId);
-                            globalLineId = profile.userId; // 取得してグローバル変数に格納
-                            document.body.style.display = "block"; // ここでページを表示
+        function initializeApp() {
+            if (liff.isLoggedIn()) {
+                liff.getProfile()
+                    .then(profile => {
+                        lineId = profile.userId;
+                        alert("あなたのLINE IDは: " + lineId);
+                        $('#lineId').text("あなたのLINE IDは: " + lineId);
 
-                        })
-                        .catch((err) => {
-                            console.log('プロフィール取得エラー', err);
-                        });
-                } else {
-                    liff.login();
-                }
-            }
-
-            // 送信先URLを指定
-            const BASE_URL = "https://script.google.com/macros/s/AKfycbwFXORbTiUOSlNYxHaCN3fLAgAnn_ru9xjpbjPwDQzI8330TUULJBN6LeuG3gGSHCVE/exec";
-        
-            $(document).ready(function() {
-                // フォーム送信時のイベントをフック
-                $("#orderForm").on("submit", function(e) {
-                    e.preventDefault(); // 通常のフォーム送信をキャンセル
-        
-                    // フォーム入力値を取得
-                    const name        = $('input[name="name"]').val();
-                    const name_kana   = $('input[name="name_kana"]').val();
-                    const phone       = $('input[name="phone"]').val();
-                    const shop1       = $('select[name="shop1"]').val();
-                    const shop2       = $('select[name="shop2"]').val();
-                    const shop3       = $('select[name="shop3"]').val();
-                    const shop4       = $('select[name="shop4"]').val();
-        
-
-                    // AJAX送信 (GETメソッド)
-                    $.ajax({
-                        url: BASE_URL,
-                        dataType: "json", // cors
-                        method: "POST", // doGet(e)を呼ぶならGET
-                        data: {
-                            lineId: globalLineId,
-                            name: name,
-                            name_kana: name_kana,
-                            phone: phone,
-                            shop1: shop1,
-                            shop2: shop2,
-                            shop3: shop3,
-                            shop4: shop4
-                        },
-                        success: function(response) {
-                            // サーバー側からの応答があればここで受け取れる
-                            console.log("Success:", response);
-                            alert("注文完了です。LINE画面をご確認ください：" + response);
-                        },
-                        error: function(error) {
-                            console.error("Error:", error);
-                            alert("送信に失敗しました。");
-                        }
+                    })
+                    .catch((err) => {
+                        console.log('プロフィール取得エラー', err);
                     });
-                });
+            } else {
+                liff.login();
+            }
+        }
+
+        function sendData(){
+            let submitButton = document.querySelector("#orderForm button[type='submit']");
+            submitButton.disabled = true;
+
+            let formData = {
+                lineId: lineId,
+                name: $("input[name='name']").val(),
+                furigana: $("input[name='furigana']").val(),
+                phone: $("input[name='phone']").val(),
+                shop1: $("select[name='shop1']").val(),
+                shop2: $("select[name='shop2']").val(),
+                shop3: $("select[name='shop3']").val(),
+                shop4: $("select[name='shop4']").val()
+            };
+            fetch("https://script.google.com/macros/s/AKfycbwFXORbTiUOSlNYxHaCN3fLAgAnn_ru9xjpbjPwDQzI8330TUULJBN6LeuG3gGSHCVE/exec", {
+                method: "POST",
+                mode: "no-cors", // CORSを回避
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            }).then(response => {
+                alert("注文が送信されました！");
+                window.close();
+            }).catch(error => {
+                alert("注文の送信に失敗しました。もう一度お試しください。");
+                console.log(error);
             });
-        </script>
-    </body>
+        }
+    </script>
+</body>
 </html>
