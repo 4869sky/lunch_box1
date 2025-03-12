@@ -110,7 +110,7 @@
                 liff.getProfile()
                     .then(profile => {
                         //alert("あなたのLINE IDは: " + profile.userId);
-                        $('#lineId').text("あなたのLINE IDは: " + profile.userId);
+                        //$('#lineId').text("あなたのLINE IDは: " + profile.userId);
                         globalLineId = profile.userId; // 取得してグローバル変数に格納
                         document.body.style.display = "block"; // ここでページを表示
 
@@ -150,10 +150,29 @@
                           + "&shop2="      + encodeURIComponent(shop2)
                           + "&shop3="      + encodeURIComponent(shop3)
                           + "&shop4="      + encodeURIComponent(shop4);
-    
-                // URL へ飛ばす
-                window.location.href = BASE_URL + query;
-            });
+        // AJAX送信 (GETメソッド)
+        $.ajax({
+            url: BASE_URL,
+            method: "GET", // doGet(e)を呼ぶならGET
+            data: {
+                lineId: globalLineId,
+                name: name,
+                name_kana: name_kana,
+                phone: phone,
+                shop1: shop1,
+                shop2: shop2,
+                shop3: shop3,
+                shop4: shop4
+            },
+            success: function(response) {
+                // サーバー側からの応答があればここで受け取れる
+                console.log("Success:", response);
+                alert("注文完了です。LINE画面をご確認ください：" + response);
+            },
+            error: function(error) {
+                console.error("Error:", error);
+                alert("送信に失敗しました。");
+            }
         });
     </script>
 </body>
