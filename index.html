@@ -103,7 +103,15 @@
         $(document).ready(function () {
             const liffId = "2007054863-m45ZelkY";
             initializeLiff(liffId);
-
+            // ① ページロード後に「売り切れ店舗」を取得し、フォームの選択肢を無効化する
+            fetchSoldOutShops()
+                .then(soldOutShops => {
+                    console.log("売り切れ店舗一覧:", soldOutShops);
+                    disableSoldOutOptions(soldOutShops);
+                })
+                .catch(err => {
+                    console.error("売り切れ店舗の取得に失敗:", err);
+                });
 
             //
             $("#orderForm").submit(function (event) {
@@ -176,7 +184,37 @@
         function showSpinner() {
             document.getElementById("spinnerOverlay").style.display = "flex";
         }
-
+        
+        
+        // ② 売り切れ店舗を取得する関数（Apps ScriptのWebアプリURLに置き換えてください）
+        async function fetchSoldOutShops() {
+            const url = "【ここにあなたの doGet URL を貼り付け】";
+            const response = await fetch(url); 
+            if (!response.ok) {
+                throw new Error("ネットワークエラー");
+            }
+            const data = await response.json();
+            // dataは { soldOutShops: [...] } の形式を想定
+            return data.soldOutShops || [];
+        }
+        
+        // ③ 売り切れリストと一致する<select><option>を無効化する関数
+        function disableSoldOutOptions(soldOutShops) {
+            // name="shop1", "shop2", "shop3", "shop4" すべてを対象にする
+            const selects = document.querySelectorAll("select[name^='shop']");
+            selects.forEach(select => {
+                const options = select.querySelectorAll("option");
+                options.forEach(option => {
+                    // option.value と売り切れリストを比較
+                    if (soldOutShops.includes(option.value)) {
+                        // "売り切れ" として選択できないようにする
+                        option.disabled = true;
+                        // 表示上わかりやすくしたければ:
+                        option.textContent += "（売り切れ）";
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
